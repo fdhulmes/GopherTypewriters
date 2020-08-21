@@ -12,7 +12,7 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	filetext := readFile()
-	textArr := strings.Split(filetext, " ")
+	textArr := strings.Split(filetext, "")
 	count := make(chan int)
 
 	go func() {
@@ -30,7 +30,7 @@ func main() {
 }
 
 func readFile() string {
-	content, err := ioutil.ReadFile("art.txt")
+	content, err := ioutil.ReadFile("trueArt.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -44,7 +44,6 @@ func printText(text []string, count chan int) {
 	for {
 		ind := <-count
 		fmt.Print(text[ind])
-		fmt.Print(" ")
 	}
 }
 
